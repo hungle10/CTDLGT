@@ -16,6 +16,7 @@ bool isEmptyList(LINKEDLIST& myList);
 void addFirst(LINKEDLIST& myList,NODE* p);
 void addLast(LINKEDLIST& myList,NODE* p);
 void quickSort(LINKEDLIST& myList);
+void removeLast(LINKEDLIST& myList);
 
 int main()
 {
@@ -35,12 +36,14 @@ int main()
     addNode(myList,NODE2,NODE3);
     addNode(myList,NODE3,NODE4);
     addNode(myList,NODE5,NODE6);
-    addLast(myList,NODE6);
+    
     //chua sap xep
 	xuatNode(myList);
 	quickSort(myList);
 	cout<<endl;
 	xuatNode(myList);
+    removeLast(myList);
+    xuatNode(myList);
 }
 void addFirst(LINKEDLIST& myList,NODE* p)
 {
@@ -140,6 +143,45 @@ void quickSort(LINKEDLIST& myList)
 	else
 	myList.Tail=pivot;
 }
+void removeFirst(LINKEDLIST& myList)
+{
+	if(isEmptyList(myList)==true)
+	    return;
+	else
+	{
+		NODE*p=myList.Head;
+		if(myList.Head==myList.Tail)
+		    myList.Head=myList.Tail=NULL;
+		else
+		    myList.Head=myList.Head->next;
+	    delete p;
+	}
+}
+void removeLast(LINKEDLIST& myList)
+{
+	if(isEmptyList(myList)==true)
+	   return;
+	else
+	{
+		NODE*q=myList.Tail;
+		if(myList.Head==myList.Tail)
+		    myList.Head=myList.Tail=NULL;
+		else
+		{
+			NODE*p;
+			for(p=myList.Head;p!=NULL;p=p->next)
+			   if(p->next=myList.Tail)
+			      {
+			      	delete q;
+			      	p->next=NULL;
+			      	myList.Tail=p;
+			      	return;
+			       }
+		}
+	}
+}
+			
+			
 	     
 	   
 
