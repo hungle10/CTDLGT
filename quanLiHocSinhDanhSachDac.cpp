@@ -12,7 +12,6 @@ struct DANHSACH{
 
 void taoDanhSach(DANHSACH &HS,string name,int diemCTDL);
 void xuatDanhSach(DANHSACH HS);
-void quickSort(DANHSACH &HS,int left,int right);
 void xoaPhanTuBatKi(DANHSACH &B,int viTri);
 void xuLyXoaHocSinh(DANHSACH &B);
 int maxDiem(DANHSACH HS);
@@ -109,30 +108,6 @@ void xuatDanhSach(DANHSACH HS)
 	   cout<<HS.A[i].name<<" "<<HS.A[i].diemCTDL;
 	cout<<endl;
 	}
-}
-void quickSort(DANHSACH &HS,int left,int right)
-{
-	int i=left,j=right;
-	int pivot=HS.A[(left+right)/2].diemCTDL;
-	while(i<=j)
-	{
-		while(HS.A[i].diemCTDL>pivot)
-		  i++;
-		while(HS.A[j].diemCTDL<pivot)
-		  j--;
-		if(i<=j)
-		{
-		   HOCSINH temp=HS.A[i];
-			HS.A[i]=HS.A[j];
-			HS.A[j]=temp;
-			i++;
-			j--;
-		}
-	};
-	if(left<j)
-	   quickSort(HS,left,j);
-	if(i<right)
-	   quickSort(HS,i,right);
 }
 void xuLyXoaHocSinh(DANHSACH &B)
 {
