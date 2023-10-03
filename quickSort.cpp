@@ -14,21 +14,28 @@ int main()
 	
 	
 }
-void quickSort(int a[], int l, int r)
+void quickSort(int A[], int left, int right)
 {
- int i, j, x;
- if (l >= r) return;
- x = a[(l + r)/2]; //ch?n ph?n t? gi?a làm giá tr? m?c
- i = l; j = r;
- do{
- while(a[i] < x) i++;
- while(a[j] > x) j--;
- if(i <= j) {
- swap(a[i], a[j]);
- i++ ;
- j--;
- }
- } while(i < j) ;
- if(l<j) quickSort(a, l, j);
- if(i<r) quickSort(a, i, r);
+	int i=left;
+	int j=right;
+	int pivot=A[(left+right)/2];
+	while(i<=j)
+	{
+		while(A[i]<pivot)
+		   i++;
+		while(A[j]>pivot)
+		  j--;
+		if(i<=j)
+		{
+			int temp=A[i];
+			A[i]=A[j];
+			A[j]=temp;
+			i++;
+			j--;
+		}
+	}
+	if(left<j)
+    quickSort(A,left,j);
+    if(i<right)
+    quickSort(A,i,right);
 }
